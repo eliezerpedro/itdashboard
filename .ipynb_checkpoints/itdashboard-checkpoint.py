@@ -55,8 +55,13 @@ class Itdashboard:
                 except NoSuchElementException:
                     pass
             #aguarda o nome da agencia aparecer em caixa alta na tela
-            while not self.browser.find_element_by_xpath('*//div[@class="spending-overview"]//h3').text == agency.upper(): 
-                sleep(1)
+            while 1:
+                try:
+                    while not self.browser.find_element_by_xpath('*//div[@class="spending-overview"]//h3').text == agency.upper(): 
+                        sleep(1)
+                    break
+                except:
+                    pass
                 
             it_spending = self.browser.find_element_by_xpath('*//div[@class="it-spending"]').text.split('\n')[1] #captura os dados da label it-spending
             major_spending = self.browser.find_element_by_xpath('*//div[@class="major-spending"]').text.split('\n')[1] #captura os dados da label major-spending
